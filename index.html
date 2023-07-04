@@ -7,13 +7,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
         }
         
         h1 {
-            font-size: 48px;
+            font-size: calc(80vw / 6);
             text-align: center;
             display: none;
         }
@@ -22,60 +23,61 @@
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
+            margin-bottom: 20px;
         }
-      .qr_code_div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.qr_title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#qr_canvas{
-    border: 4px solid white;
-}
+        
+        .qr_code_div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .qr_title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        #qr_canvas {
+            border: 4px solid white;
+        }
     </style>
 </head>
 <body>
     <button id="showButton">Click to Show Message</button>
     <h1 id="message">Hello, good sir!</h1>
 
+    <div class="qr_code_div">
+        <h1 class="qr_title">Share This Page!</h1>
+        <canvas id="qr_canvas" width="200" height="200"></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
     <script>
         var showButton = document.getElementById('showButton');
         var message = document.getElementById('message');
-        
+
         showButton.addEventListener('click', function() {
             showButton.style.display = 'none';
             message.style.display = 'block';
         });
+
+        function generateQRCode(text, canvasId) {
+            var canvas = document.getElementById(canvasId);
+            var qr = new QRious({
+                element: canvas,
+                value: text,
+                size: 200,
+            });
+        }
+
+        // Get the current URL
+        var currentURL = window.location.href;
+
+        // Generate QR code using the current URL
+        generateQRCode(currentURL, 'qr_canvas');
     </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
-  <div class="qr_code_div">
-    <h1 class="qr_title">Share This Page!</h1>
-    <canvas id="qr_canvas" width="200" height="200"></canvas>
-  </div>
-
-  <script>
-    function generateQRCode(text, canvasId) {
-      var canvas = document.getElementById(canvasId);
-      var qr = new QRious({
-        element: canvas,
-        value: text,
-        size: 200,
-      });
-    }
-
-    // Get the current URL
-    var currentURL = window.location.href;
-
-    // Generate QR code using the current URL
-    generateQRCode(currentURL, 'qr_canvas');
-  </script>
 </body>
 </html>
