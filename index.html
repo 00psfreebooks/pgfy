@@ -36,23 +36,33 @@
             margin-bottom: 5vh;
         }
 
-	#timer {
-		font-size: calc(80vw / 10);
-	}
+        #timer {
+            font-size: calc(80vw / 10);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1 id="maintitle"><i>Compliance & Complaints Form</i></h1>
     
-    <p>Notice: Due to an exceptional number of current requests, the necessary form will be displayed below within the allotted time.</p>
+    <p><b>Notice:</b> Due to an exceptional number of current requests, the necessary form will be displayed below within the allotted time. Please do not refresh or navigate away from this page. We appreciate your patience.</p>
     
     <div id="timer">09:37</div>
     
-	<h1 id="message" style="display: none;">Go Fuck Yourself :)</h1>
+    <h1 id="message" style="display: none;">Go Fuck Yourself :)</h1>
     
-<div class="qr_code_div">
+    <div class="qr_code_div">
         <canvas id="qr_canvas" width="200" height="200"></canvas>
     </div>
+
+    <footer>
+        &copy; Bonjourno Enterprises 2023
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
     <script>
